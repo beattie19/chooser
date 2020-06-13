@@ -4,11 +4,11 @@
     padding: 5px;
     border-radius: 5px;
     list-style: none;
-    justify-items: center;
     background-color: yellow;
     display: flex;
     justify-content: space-between;
-    border: 2px black solid
+    border: 2px black solid;
+    align-items: center;
 }
 
 .deleteItem {

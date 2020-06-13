@@ -6,9 +6,28 @@
 }
 
 form {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+
     button {
         border-radius: 5px;
         font-size: 2rem;
         background-color: yellow;
     }
+}
+
+.startButton {
+    border-radius: 5px;
+    font-size: 2rem;
+    background-color: yellow;
+    margin: 0 auto;
+}
+
+.form-control {
+    margin: 5px;
+}
+
+.hide {
+    visibility: hidden;
 }
