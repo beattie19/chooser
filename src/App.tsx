@@ -1,29 +1,56 @@
 import React, { useState } from 'react';
-import './App.css';
-import OptionList from './components/OptionList'
-import InputForm from './components/InputForm';
+import styles from './App.module.scss';
+import OptionList from './components/OptionList/index'
+import InputForm from './components/InputForm/index';
 
-type itemArray = string[]
+type Options = Option[]
+export type Option = {
+  id: number,
+  text: string
+}
 
 const App: React.FC = () => {
-  const [items, setItems] = useState<itemArray>([]);
+  const [options, setOptions] = useState<Options>([]);
+  const [showDelete, setShowDelete] = useState<boolean>(true);
 
-  const addItem = (item: string) => {
-    setItems([item, ...items]);
+  const addOption = (option: Option) => {
+    setOptions([option, ...options]);
   }
 
-  const deleteItem = (itemText: string) => {
-    const filteredItems = items.filter((item) => {
-      return item !== itemText;
+  const deleteOption = (option: Option) => {
+    const filteredOptions = options.filter((existingOption) => {
+      return existingOption.id !== option.id;
     })
 
-    setItems(filteredItems);
+    setOptions(filteredOptions);    
+  }
+
+  const startRandomChoice = () => {    
+    setShowDelete(false);
+    pickSingleChoice();
+  }
+
+  const pickSingleChoice = () => {
+
+      // const randomToRemove = options[Math.floor(Math.random() * options.length)];
+
+      // deleteOption(randomToRemove);
+
+    while(options.length > 1) {
+    //   // const randomToRemove = options[Math.floor(Math.random() * options.length)];
+    //   // console.log(randomToRemove);
+    //   // deleteOption(options[0]);
+    //   // console.log(options);
+      options.pop();
+    }
   }
 
   return (
     <div className="App">
-      <InputForm addItem={addItem}/>
-      <OptionList items={items} deleteItem={deleteItem}/>
+      <div className={styles.inputContainer}>
+        <InputForm addOption={addOption} startRandomChoice={startRandomChoice}/>
+      </div>
+      <OptionList options={options} showDelete={showDelete} deleteOption={deleteOption}/>
     </div>
   );
 }
