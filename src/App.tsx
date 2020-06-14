@@ -48,6 +48,9 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <div className={styles.headerNav}>
+        <h1>Chooser</h1>
+      </div>
       <div className={styles.inputContainer}>
         <InputForm addOption={addOption} showDelete={showDelete} startRandomChoice={startRandomChoice} optionCount={options.length} resetChooser={resetChooser}/>
       </div>
