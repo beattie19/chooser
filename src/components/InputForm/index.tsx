@@ -18,7 +18,8 @@ const InputForm: React.FC<InputFormProps> = ({addOption, startRandomChoice, opti
         const enteredText = textInputRef.current!.value;
         const option: Option = {
             id: Math.random(),
-            text: enteredText.toUpperCase()
+            text: enteredText.toUpperCase(),
+            disabled: false
         };
         addOption(option);
     }

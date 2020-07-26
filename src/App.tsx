@@ -7,6 +7,7 @@ type Options = Option[]
 export type Option = {
   id: number,
   text: string
+  disabled: boolean
 }
 
 const App: React.FC = () => {
@@ -32,15 +33,33 @@ const App: React.FC = () => {
     setOptions(filteredOptions);    
   }
 
+  const disableOption = (option: Option) => {
+    const updatedOptions = options.map((existingOption) => {
+        console.log(option);
+      if (existingOption.id === option.id) {
+        existingOption.disabled = true;
+      };
+      return existingOption;
+    });
+
+    setOptions(updatedOptions);
+  }
+
   const startRandomChoice = () => {    
     setShowDelete(false);
   }
 
+  const disabledOptions = options.filter((option) => {
+    return option.disabled === false;
+  });
+
+  // console.log(disabledOptions);
+
   useEffect(
     () => {
-      if (!showDelete && options.length > 1) { 
-        let randomToRemove = options[Math.floor(Math.random() * options.length)];
-        setTimeout(() => { deleteOption(randomToRemove); }, 1000);
+      if (!showDelete && disabledOptions.length > 1) { 
+        let randomRemoveEnabledOption = disabledOptions[Math.floor(Math.random() * disabledOptions.length)];
+        setTimeout(() => { disableOption(randomRemoveEnabledOption); }, 1000);
       }
     },
     [showDelete, options]

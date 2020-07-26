@@ -9,8 +9,10 @@ type OptionListItemProps = {
 }
 
 const OptionListItem: React.FC<OptionListItemProps> = ({option, showDelete, deleteOption}) => {
+    const disabled = option.disabled === true;
+
     return (
-        <div className={styles.listItem}>
+        <div className={disabled ? styles.disabledListItem : styles.listItem}>
             <li>{option.text}</li>
             {showDelete && <a className={styles.deleteItem} onClick={deleteOption.bind(null, option)} href="#0">x</a>}
         </div>
