@@ -36,7 +36,7 @@ const InputForm: React.FC<InputFormProps> = ({addOption, startRandomChoice, opti
     <>
         <form onSubmit={handleSubmit}>
             <div className="form-control">
-                <input type="text" className={styles.inputText} ref={textInputRef} placeholder="Enter option" required/>
+                <input type="text" className={styles.inputText} ref={textInputRef} placeholder="Enter option" required disabled={!showDelete}/>
             </div>
             {showDelete && <button type="submit"><span>&#43;</span></button>}
         </form>
